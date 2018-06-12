@@ -36,7 +36,6 @@ public class Health : NetworkBehaviour
     void OnChangeHealth(int CurrentHealth)
     {
         HealthBar.sizeDelta = new Vector2(CurrentHealth, HealthBar.sizeDelta.y);
-
     }
 
     // ClientRpc; called on the server, executed by the clients
