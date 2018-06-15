@@ -13,6 +13,8 @@ public class Health : NetworkBehaviour
     [SyncVar(hook = "OnChangeHealth")]
     public int CurrentHealth = MaxHealth;
 
+    public bool DestroyOnDeath;
+
     public void TakeDamage(int Amount)
     {
         if (!isServer)
@@ -24,10 +26,17 @@ public class Health : NetworkBehaviour
         Debug.Log(CurrentHealth);
         if (CurrentHealth <= 0)
         {
+            if (DestroyOnDeath)
+            {
+                Destroy(gameObject);
+            }
+            else
+            { 
 
             CurrentHealth = MaxHealth;
             RpcRespawn();
-            
+
+            }
         }
 
        
